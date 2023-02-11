@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "anhduc_app",
+    "password": "Anhduc@123",
+    "database": "nodejsdb",
+    "host": "192.168.68.112",
+    "dialect": "mariadb"
+  },
+  "test": {
+    "username": "anhduc_app",
+    "password": "Anhduc@123",
+    "database": "nodejsdb",
+    "host": "192.168.68.112",
+    "dialect": "mariadb"
+  },
+  "production": {
+    "username": "anhduc_app",
+    "password": "Anhduc@123",
+    "database": "nodejsdb",
+    "host": "192.168.68.112",
+    "dialect": "mariadb"
+  }
+}
