@@ -1,0 +1,41 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/cssloginpage.css">
+    <title>Trang Dang Nhap App</title>
+</head>
+
+<body>
+    <div class="login_div">
+        <h2>TRANG ĐĂNG NHẬP</h2>
+        <form action="/action_page.php" method="post">
+            <div class="imgcontainer">
+                <img src="/img/img_avatar2.png" alt="Avatar" class="avatar">
+            </div>
+
+            <div class="container">
+                <label for="uname"><b>Tên Đăng Nhập</b></label>
+                <input type="text" placeholder="Enter Username" name="uname" required>
+
+                <label for="psw"><b>Mật Khẩu</b></label>
+                <input type="password" placeholder="Enter Password" name="psw" required>
+
+                <button type="submit">Đăng Nhập</button>
+
+            </div>
+
+            <div class="container" style="background-color:#f1f1f1">
+                <button type="button" class="cancelbtn">Huỷ</button>
+                <label>
+                    <input type="checkbox" checked="checked" name="remember"> Nhớ mật khẩu!
+                </label>
+                <span class="psw">Quên mật khẩu? <a href="#">password?</a></span>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

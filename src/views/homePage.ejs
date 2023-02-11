@@ -1,0 +1,51 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/homePage.css">
+    <title>Trang Chu</title>
+</head>
+
+<body>
+    <h1>CHAO MUNG DEN VOI NODEJS</h1>
+    <h4>Danh Sach User</h4>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Tel</th>
+            <th>Chi Nhanh</th>
+            <th>Action</th>
+        </tr>
+        <% for(let i=0; i< data.length;i++) { %>
+            <tr>
+                <td>
+                    <%=data[i].id %>
+                </td>
+                <td>
+                    <%=data[i].name %>
+                </td>
+                <td>
+                    <%=data[i].email %>
+                </td>
+                <td>
+                    <%=data[i].tel %>
+                </td>
+                <td>
+                    <%=data[i].machinhanh %>
+                </td>
+                <td>
+                    <a class="action_b" href="/detail/user/<%=data[i].id %>" target="_blank"> Chi Tiet</a>
+                    <button type="button">Sua</button>
+                    <button type="button">Xoa</button>
+                </td>
+            </tr>
+            <% } %>
+    </table>
+    <h1>Danh Sach</h1>
+</body>
+
+</html>

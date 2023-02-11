@@ -1,0 +1,209 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    position: relative;
+    /* fallback for old browsers */
+    background: #6a11cb;
+
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
+}
+
+.login_div {
+    position: absolute;
+    width: 30%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border-radius: 8px;
+    box-shadow: 3px 5px 5px #131313;
+}
+
+
+
+form {
+
+    border: 3px solid #f1f1f1;
+
+}
+
+input[type=text],
+input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #04AA6D;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+.cancelbtn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #f44336;
+}
+
+.imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+}
+
+img.avatar {
+    width: 10%;
+    border-radius: 50%;
+}
+
+.container {
+    padding: 16px;
+}
+
+span.psw {
+    float: right;
+    padding-top: 16px;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 468px) {
+
+    .login_div {
+        position: absolute;
+        width: 100%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    span.psw {
+        display: block;
+        float: none;
+    }
+
+    .container {
+        padding: 1px;
+    }
+
+
+    .cancelbtn {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 468px) {
+
+    .login_div {
+        position: absolute;
+        width: 80%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    span.psw {
+        display: block;
+        float: none;
+    }
+
+    .container {
+        padding: 1px;
+    }
+
+
+    .cancelbtn {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 768px) {
+
+    .login_div {
+        position: absolute;
+        width: 70%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    span.psw {
+        display: block;
+        float: none;
+    }
+
+    .container {
+        padding: 1px;
+    }
+
+
+    .cancelbtn {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 980px) {
+
+    .login_div {
+        position: absolute;
+        width: 60%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    span.psw {
+        display: block;
+        float: none;
+    }
+
+    .container {
+        padding: 1px;
+    }
+
+
+    .cancelbtn {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+
+    .login_div {
+        position: absolute;
+        width: 40%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    span.psw {
+        display: block;
+        float: none;
+    }
+
+    .container {
+        padding: 1px;
+    }
+
+
+    .cancelbtn {
+        width: 100%;
+    }
+}
