@@ -9,10 +9,14 @@ let initWebRouters = (app) => {
     router.get('/about', homeController.getAboutPage);
     router.get('/login', homeController.getLoginPage);
     router.get('/create-user', homeController.createUser);
-    router.post('/post-crud', homeController.postCrud);
+    router.get('/detail-user/', userController.detailUser);
+    router.get('/edit-user', userController.editUser);//form lay thong tin de chinh sua
+    router.post('/update-user', userController.updateUser);// update thong tin nguoi dung name, tel
+    router.post('/post-crud', homeController.postCrud); // tao nguoi dung moi
 
     // xay dung api
     router.get('/api/login', userController.handleLogin);
+    router.get('/api/getUser', userController.handleGetUser)
 
     return app.use("/", router);
 }

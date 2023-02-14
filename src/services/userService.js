@@ -75,6 +75,114 @@ let checkEmail = (emailUser) => {
     })
 }
 
+let getUserData = (id) => {
+    return new Promise((resolve, reject) => {
+        try {
+            let dataUser = {}
+            if (id) {
+
+            } else {
+                console.log('ID Rong')
+                resolve({
+                    dataUser
+                })
+            }
+        } catch (error) {
+            reject(error)
+        }
+    })
+}
+let detailUserService = async (id) => { // Ham service kiem tra dieu kien va thao tac truc tiep voi database
+    return new Promise(async (resolve, reject) => {
+        try {
+            let user = await db.User.findOne({
+                where: {
+                    id: id
+                },
+                raw: true
+            })
+            if (user) {
+                resolve(user)
+            } else {
+                resolve()  // tra ra bien rong
+            }
+        } catch (e) {
+            reject(e)
+        }
+    })
+
+}
+
+let editUserService = async (userId) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let user = await db.User.findOne({
+                where: {
+                    id: userId
+                },
+                attributes: { exclude: ['pass'] },
+                raw: true
+            })
+            if (user) {
+                resolve(user)
+            } else {
+                resolve()  // tra ra bien rong
+            }
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
+let doEditUserService = async (user) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            console.log('do edit', user)
+            let userId = user.id
+            // check id co ton tai
+            if (userId) {
+                let check = await db.User.findOne({
+                    where: { id: userId }
+                })
+                console.log(check)
+
+                if (check) {
+                    let doUpdate = await db.User.update(
+                        {
+                            name: user.name,
+                            email: user.email,
+                            tel: user.tel
+                        }, {
+                        where: {
+                            id: userId
+                        }
+                    });
+
+                    resolve({
+                        errCode: 0,
+                        errMess: "Cap Nhat Nguoi Dung Thanh Cong"
+                    })
+                } else {
+                    resolve({
+                        errCode: 1,
+                        errMess: "Khong Ton Tai Nguoi Dung"
+                    })
+                }
+            } else {
+                resolve({
+                    errCode: 1,
+                    errMess: "Khong Ton Tai Nguoi Dung"
+                })
+            }
+
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
 module.exports = {
     handleUserlogin: handleUserlogin,
+    getUserData: getUserData,
+    detailUserService: detailUserService,
+    editUserService: editUserService,
+    doEditUserService: doEditUserService,
 }

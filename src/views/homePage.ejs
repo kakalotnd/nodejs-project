@@ -10,6 +10,9 @@
 
 <body>
     <h1>CHAO MUNG DEN VOI NODEJS</h1>
+    <form action="/create-user" method="get">
+        <button type="submit" value=""> Add User </button>
+    </form>
     <h4>Danh Sach User</h4>
     <table>
         <tr>
@@ -38,9 +41,9 @@
                     <%=data[i].machinhanh %>
                 </td>
                 <td>
-                    <a class="action_b" href="/detail/user/<%=data[i].id %>" target="_blank"> Chi Tiet</a>
-                    <button type="button">Sua</button>
-                    <button type="button">Xoa</button>
+                    <a class="action_b" href="/detail-user?id=<%=data[i].id %>" target="_blank"> Chi Tiet</a>
+                    <a class="action_b" href="/edit-user?id=<%=data[i].id %>" target="_blank"> Chinh Sua</a>
+                    <a class="action_b" href="/delete-user?id=<%=data[i].id %>" target="_blank"> Xoa</a>
                 </td>
             </tr>
             <% } %>

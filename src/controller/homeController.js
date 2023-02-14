@@ -25,8 +25,14 @@ let createUser = (req, res) => {
 
 let postCrud = async (req, res) => {
     let mess = await CRUDService.createNewUser(req.body) // chuyen vao data body vao trong ham service de su ly
-    console.log(mess)
-    return res.send('Tao Co So Du Lieu')
+    //load tat ca du lieu danh sach data de tra ve cho user chuyen huong trang
+    // load database
+    try {
+        let data = await db.User.findAll()
+        return res.render('homePage.ejs', { data: data });
+    } catch (e) {
+        console.log(e)
+    }
 }
 
 module.exports = {     // xuat ra mot object nhieu ham

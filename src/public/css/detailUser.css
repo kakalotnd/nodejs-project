@@ -1,0 +1,26 @@
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th {
+    background: rgb(4, 248, 130);
+}
+
+td,
+th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+.action_b {
+    border: 1px solid;
+    padding: 3px;
+    border-radius: 5px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
