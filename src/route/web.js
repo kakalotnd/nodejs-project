@@ -13,6 +13,7 @@ let initWebRouters = (app) => {
     router.get('/edit-user', userController.editUser);//form lay thong tin de chinh sua
     router.post('/update-user', userController.updateUser);// update thong tin nguoi dung name, tel
     router.post('/post-crud', homeController.postCrud); // tao nguoi dung moi
+    router.get('/delete-user', userController.deleteUser); // xoa nguoi dung
 
     // xay dung api
     router.get('/api/login', userController.handleLogin);

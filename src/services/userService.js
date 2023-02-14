@@ -179,10 +179,42 @@ let doEditUserService = async (user) => {
         }
     })
 }
+
+let deleteUserService = async (userId) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let user = await db.User.findOne({
+                where: { id: userId }
+            })
+            if (user) {// ton tai nguoi dung
+                // Delete everyone named "Jane"
+                let check = await db.User.destroy({
+                    where: {
+                        id: userId
+                    }
+                });
+                console.log('Check Delete: === ', check)
+                resolve({
+                    errCode: 0,
+                    errMess: "Xoa Thanh Cong"
+                })
+            } else {
+                resolve({
+                    errCode: 1,
+                    errMess: "Nguoi Dung Khong Ton Tai"
+                })
+            }
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
 module.exports = {
     handleUserlogin: handleUserlogin,
     getUserData: getUserData,
     detailUserService: detailUserService,
     editUserService: editUserService,
     doEditUserService: doEditUserService,
+    deleteUserService: deleteUserService,
+
 }

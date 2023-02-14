@@ -79,6 +79,18 @@ let updateUser = async (req, res) => { // ham controller su ly logic truoc khi c
 
 }
 
+let deleteUser = async (req, res) => {
+    let idUser = req.query.id
+    console.log(idUser)
+    if (idUser) { // check req co gui id hop le hay khong
+        console.log('Delete User -- Check------')
+        let data = await userService.deleteUserService(userID)
+        return res.send('Da Xoa Nguoi Dung Thanh Cong')
+    } else {
+        return res.send('Nguoi Dung Khong Ton Tai! Xin Thu Lai')
+    }
+
+}
 
 module.exports = {     // xuat ra mot object nhieu ham
     handleLogin: handleLogin,
@@ -86,4 +98,5 @@ module.exports = {     // xuat ra mot object nhieu ham
     detailUser: detailUser,
     editUser: editUser,
     updateUser: updateUser,
+    deleteUser: deleteUser,
 }
