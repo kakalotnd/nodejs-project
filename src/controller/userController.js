@@ -1,12 +1,13 @@
 import db from "../models/index";
 import userService from "../services/userService"
+import User from "../models/user"
 
 let handleLogin = async (req, res) => {
     let email = req.body.email;
     let pass = req.body.pass;
     // let check email and pass
     if (!email || !pass) { // neu kho co email hoac pass thi tra ve ve false
-        return res.send({
+        return res.status(200).json({
             errCode: 1,
             errMess: 'Chua Nhap Email || Pass',
             userData: {}
@@ -80,15 +81,50 @@ let updateUser = async (req, res) => { // ham controller su ly logic truoc khi c
 }
 
 let deleteUser = async (req, res) => {
-    let idUser = req.query.id
-    console.log(idUser)
-    if (idUser) { // check req co gui id hop le hay khong
-        console.log('Delete User -- Check------')
+    let userID = req.query.id
+    if (userID) { // check req co gui id hop le hay khong
         let data = await userService.deleteUserService(userID)
         return res.send('Da Xoa Nguoi Dung Thanh Cong')
     } else {
         return res.send('Nguoi Dung Khong Ton Tai! Xin Thu Lai')
     }
+
+}
+
+let Register = async (req, res) => {
+    // Get user input.
+    const { name, email, tel, pass } = req.body;
+    // Validate user input.
+    if (!(email && pass && name && tel)) {
+        return res.status(400).send("All input is required");
+    } else {
+        //
+        let User = {
+            name: name,
+            email: email,
+            tel: tel,
+            pass: pass
+        }
+        let result = await userService.registerService(User)
+        if (result) {
+            if (result.errCode === 409) {
+                return res.status(409).send("User Already Exist. Please Login");
+            } else {
+                if (result.errCode === 201) {
+                    res.status(201).json(result.user);
+                }
+            }
+        } else {
+            res.status(401).send("Loi Ket Noi DataBase Thu lai");
+        }
+    }
+    // Validate if the user already exists.
+    // Encrypt the user password.
+    // Create a user in our database.
+    // And finally, create a signed JWT token.
+
+}
+let Login = (req, res) => {
 
 }
 
@@ -99,4 +135,6 @@ module.exports = {     // xuat ra mot object nhieu ham
     editUser: editUser,
     updateUser: updateUser,
     deleteUser: deleteUser,
+    Register: Register,
+    Login: Login,
 }

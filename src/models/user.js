@@ -20,7 +20,8 @@ module.exports = (sequelize, DataTypes) => {
     tel: DataTypes.STRING,
     pass: DataTypes.STRING,
     roleid: DataTypes.STRING,
-    machinhanh: DataTypes.STRING
+    machinhanh: DataTypes.STRING,
+    token: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'User',

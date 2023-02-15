@@ -1,6 +1,8 @@
 import bcrypt from 'bcryptjs';
 import e from 'express';
 import db from '../models/index';
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 const salt = bcrypt.genSaltSync(10);
 
@@ -25,13 +27,13 @@ let handleUserlogin = (email, pass) => {
 
                         resolve({  // tra ve la dung
                             errCode: 0,
-                            mess: 'ok',
+                            errMess: 'ok',
                             userData: user
                         })
                     } else {
                         resolve({
                             errCode: 2,
-                            mess: 'Sai Pass Word',
+                            errMess: 'Sai Pass Word',
                             userData: user
                         })
                     }
@@ -39,16 +41,18 @@ let handleUserlogin = (email, pass) => {
                     //error nguoi dung khong ton tai
                     resolve({
                         errCode: 1,
-                        mess: 'Nguoi Dung Khong Ton Tai',
+                        errMess: 'Nguoi Dung Khong Ton Tai',
                         userData: {}
                     })
                 }
 
             } else {
                 // error nguoi dung khong ton tai
-                userData.errCode = 1;
-                userData.errMess = "Email Khong Ton Tai"
-                resolve(userData)
+                resolve({
+                    errCode: 1,
+                    errMess: 'Nguoi Dung Khong Ton Tai',
+                    userData: {}
+                })
             }
         } catch (e) {
             reject(e)
@@ -209,6 +213,64 @@ let deleteUserService = async (userId) => {
         }
     })
 }
+
+let registerService = async (UserData) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+
+            // check if user already exist
+            // Validate if user exist in our database
+            console.log(UserData)
+            let oldUser = await db.User.findOne({
+                where: { email: UserData.email }
+            });
+
+            if (oldUser) {
+                resolve({
+                    errCode: 409,
+                    errMess: "User Already Exist. Please Login",
+                    user: {}
+                })
+            }
+
+            console.log('Check pass: ', UserData.pass)
+            //Encrypt user password
+            let encryptedPassword = await bcrypt.hashSync(UserData.pass, salt); // su dung await
+
+            // Create user in our database
+            let user = await db.User.create({
+                name: UserData.name,
+                email: UserData.email.toLowerCase(), // sanitize: convert email to lowercase
+                tel: UserData.tel,
+                pass: encryptedPassword,
+            });
+
+            // get userID
+            // console.log('Check User Create: ', user)
+
+            // Create token
+            let email = user.email
+            const token = jwt.sign(
+                { user_id: user.id, email },
+                process.env.TOKEN_KEY,
+                {
+                    expiresIn: "10s", // 2d ....
+                }
+            );
+            // save user token
+            user.token = token;
+
+            // return new user
+            resolve({
+                errCode: 201,
+                errMess: 'Successed',
+                user: user
+            })
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
 module.exports = {
     handleUserlogin: handleUserlogin,
     getUserData: getUserData,
@@ -216,5 +278,6 @@ module.exports = {
     editUserService: editUserService,
     doEditUserService: doEditUserService,
     deleteUserService: deleteUserService,
+    registerService: registerService
 
 }

@@ -7,7 +7,7 @@ let router = express.Router();
 let initWebRouters = (app) => {
     router.get('/', homeController.getHomePage);
     router.get('/about', homeController.getAboutPage);
-    router.get('/login', homeController.getLoginPage);
+    // router.get('/login', homeController.getLoginPage);
     router.get('/create-user', homeController.createUser);
     router.get('/detail-user/', userController.detailUser);
     router.get('/edit-user', userController.editUser);//form lay thong tin de chinh sua
@@ -18,6 +18,13 @@ let initWebRouters = (app) => {
     // xay dung api
     router.get('/api/login', userController.handleLogin);
     router.get('/api/getUser', userController.handleGetUser)
+
+    //access token
+    // Register
+    app.post("/register", userController.Register); // dang ky nguoi dung
+
+    // Login
+    app.post("/login", userController.Login); // dang nhap su ly logic ==> tai userController
 
     return app.use("/", router);
 }
